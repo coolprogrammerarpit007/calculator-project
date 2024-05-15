@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: seagreen;
+}
+
+/* ********************************** */
+/* End of boiler plate */
+/* *********************************** */
+.main {
+  margin: 2rem auto;
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* *********************************** */
+/* Styling of calculator project */
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  background-color: grey;
+  height: auto;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.calculator .display {
+  text-align: right;
+  border: 0.5rem solid #000;
+  width: 100%;
+  color: #fff;
+  padding: 3rem;
+  font-size: 2.5rem;
+}
+
+.keys {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.keys .btn {
+  padding: 3rem;
+  border-radius: 1rem;
+  background-color: aquamarine;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.keys .btn:nth-child(17) {
+  grid-column: span 2;
+}
+
+button.btn.operator {
+  background-color: orange;
+}
+button.btn.method {
+  background-color: olivedrab;
+}
