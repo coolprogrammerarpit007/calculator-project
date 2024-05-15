@@ -18,19 +18,28 @@ let operator;
 let num2;
 let str = ``;
 let flag = false;
+let total = 0;
 
 const addition = function (num1, num2) {
-  return num1 + num2;
+  total = num1 + num2;
+  displayText.textContent = total;
+  return total;
 };
 const subtraction = function (num1, num2) {
-  return num1 - num2;
+  total = num1 - num2;
+  displayText.textContent = total;
+  return total;
 };
 const multiplication = function (num1, num2) {
-  return num1 * num2;
+  total = num1 * num2;
+  displayText.textContent = total;
+  return total;
 };
 
 const division = function (num1, num2) {
-  return num1 / num2;
+  total = num1 / num2;
+  displayText.textContent = total;
+  return total;
 };
 
 const operate = function (num1, num2, op) {
@@ -64,9 +73,13 @@ numberBtns.forEach((btn) => {
       console.log(str);
       str += btn.textContent;
       display(str);
+      num2 = str;
+      console.log(`Number 2: ${num2}`);
     } else {
       str += btn.textContent;
       display(str);
+      num1 = str;
+      console.log(`Number 1:${num1} `);
     }
   });
 });
@@ -76,4 +89,13 @@ operatorBtns.forEach((btn) => {
     operator = btn.textContent;
     displayOperator(operator);
   });
+});
+
+// **********************************
+// Adding funcnaity to the equals operator
+
+equalsOp.addEventListener(`click`, function (e) {
+  num1 = Number(num1);
+  num2 = Number(num2);
+  operate(num1, num2, operator);
 });
