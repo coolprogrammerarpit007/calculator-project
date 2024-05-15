@@ -17,6 +17,7 @@ let num1;
 let operator;
 let num2;
 let str = ``;
+let flag = false;
 
 const addition = function (num1, num2) {
   return num1 + num2;
@@ -49,9 +50,30 @@ const display = function (value) {
   displayText.textContent = value;
 };
 
+const displayOperator = function (value) {
+  console.log(`display operator`);
+  displayText.textContent = value;
+  flag = true;
+  str = ``;
+  console.log(flag);
+};
+
 numberBtns.forEach((btn) => {
   btn.addEventListener(`click`, function (e) {
-    str += btn.textContent;
-    display(str);
+    if (flag) {
+      console.log(str);
+      str += btn.textContent;
+      display(str);
+    } else {
+      str += btn.textContent;
+      display(str);
+    }
+  });
+});
+
+operatorBtns.forEach((btn) => {
+  btn.addEventListener(`click`, function (e) {
+    operator = btn.textContent;
+    displayOperator(operator);
   });
 });
