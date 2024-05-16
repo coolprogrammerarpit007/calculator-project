@@ -50,7 +50,7 @@ const division = function (num1, num2) {
     operator = ``;
   } else {
     total = num1 / num2;
-    displayText.textContent = total;
+    displayText.textContent = total.toFixed(2);
     return total;
   }
 };
