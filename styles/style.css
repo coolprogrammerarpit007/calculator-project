@@ -55,7 +55,16 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
+.keys .btn:nth-child(1) {
+  grid-column: span 3;
+}
 
+.keys .btn:nth-child(15) {
+  grid-column: span 2;
+}
+.keys .btn:nth-child(16) {
+  grid-column: span 2;
+}
 .keys .btn {
   padding: 3rem;
   border-radius: 1rem;

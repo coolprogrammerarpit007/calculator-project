@@ -38,9 +38,21 @@ const multiplication = function (num1, num2) {
 };
 
 const division = function (num1, num2) {
-  total = num1 / num2;
-  displayText.textContent = total;
-  return total;
+  if (num2 === 0) {
+    alert(`Value not possible`);
+    // setting all values back to default
+    displayText.textContent = 0;
+    total = 0;
+    str = ``;
+    num1 = 0;
+    num2 = 0;
+    flag = false;
+    operator = ``;
+  } else {
+    total = num1 / num2;
+    displayText.textContent = total;
+    return total;
+  }
 };
 
 const operate = function (num1, num2, op) {
@@ -93,7 +105,6 @@ operatorBtns.forEach((btn) => {
 equalsOp.addEventListener(`click`, function (e) {
   if (total) {
     num1 = total;
-    console.log(num1);
   }
   num1 = Number(num1);
   num2 = Number(num2);
