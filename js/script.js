@@ -9,6 +9,7 @@ const numberBtns = document.querySelectorAll(`.number`);
 const operatorBtns = document.querySelectorAll(`.operator`);
 // const methodBtns = document.querySelectorAll(`.method`);
 const equalsOp = document.querySelector(`.equals`);
+const allClear = document.getElementById(`clear`);
 
 // ****************************************
 
@@ -97,4 +98,17 @@ equalsOp.addEventListener(`click`, function (e) {
   num1 = Number(num1);
   num2 = Number(num2);
   operate(num1, num2, operator);
+});
+
+// Adding the all clear functuanility
+
+allClear.addEventListener(`click`, function (e) {
+  // setting all values back to default
+  displayText.textContent = 0;
+  total = 0;
+  str = ``;
+  num1 = 0;
+  num2 = 0;
+  flag = false;
+  operator = ``;
 });
