@@ -1,125 +1,135 @@
 `use strict`;
 
-// Acessing the calculator screen.
-const displayText = document.querySelector(`.display`);
+// getting acess to the dom elements
 
-// Acessing the calculator buttons
-const calculatorBtns = document.querySelectorAll(`.btn`);
-const numberBtns = document.querySelectorAll(`.number`);
-const operatorBtns = document.querySelectorAll(`.operator`);
-// const methodBtns = document.querySelectorAll(`.method`);
-const equalsOp = document.querySelector(`.equals`);
-const allClear = document.getElementById(`clear`);
+const display = document.querySelector(`.display`);
+const numbers = document.querySelectorAll(`.number`);
+const operators = document.querySelectorAll(`.operator`);
+const equals = document.querySelector(`.equals`);
+const clearBtn = document.getElementById(`clear`);
 
-// ****************************************
-
-// Calculator functuaniity
-let num1;
-let operator;
-let num2;
-let str = ``;
+// static vriables
+let number1 = 0;
+let number2 = 0;
+let operator = ``;
 let flag = false;
-let total;
+let numberStr = ``;
 
-const addition = function (num1, num2) {
-  total = num1 + num2;
-  displayText.textContent = total;
-  return total;
-};
-const subtraction = function (num1, num2) {
-  total = num1 - num2;
-  displayText.textContent = total;
-  return total;
-};
-const multiplication = function (num1, num2) {
-  total = num1 * num2;
-  displayText.textContent = total;
-  return total;
-};
+// functions to perform the mathamatical operations
 
-const division = function (num1, num2) {
-  if (num2 === 0) {
-    alert(`Value not possible`);
-    // setting all values back to default
-    displayText.textContent = 0;
-    total = 0;
-    str = ``;
-    num1 = 0;
-    num2 = 0;
-    flag = false;
-    operator = ``;
-  } else {
-    total = num1 / num2;
-    displayText.textContent = total.toFixed(2);
-    return total;
-  }
-};
-
-const operate = function (num1, num2, op) {
-  if (op === `+`) {
-    addition(num1, num2);
-  } else if (op === `-`) {
-    subtraction(num1, num2);
-  } else if (op === `*`) {
-    multiplication(num1, num2);
-  } else if (op === `/`) {
-    division(num1, num2);
-  }
-};
-
-// ***********************************
-const display = function (value) {
-  displayText.textContent = value;
-};
-
-const displayOperator = function (value) {
-  displayText.textContent = value;
-  flag = true;
-  str = ``;
-};
-
-numberBtns.forEach((btn) => {
-  btn.addEventListener(`click`, function (e) {
-    if (flag) {
-      str += btn.textContent;
-      display(str);
-      num2 = str;
-    } else {
-      str += btn.textContent;
-      display(str);
-      num1 = str;
-    }
-  });
-});
-
-operatorBtns.forEach((btn) => {
-  btn.addEventListener(`click`, function (e) {
-    operator = btn.textContent;
-    displayOperator(operator);
-  });
-});
-
-// **********************************
-// Adding funcnaity to the equals operator
-
-equalsOp.addEventListener(`click`, function (e) {
-  if (total) {
-    num1 = total;
-  }
-  num1 = Number(num1);
-  num2 = Number(num2);
-  operate(num1, num2, operator);
-});
-
-// Adding the all clear functuanility
-
-allClear.addEventListener(`click`, function (e) {
-  // setting all values back to default
-  displayText.textContent = 0;
-  total = 0;
-  str = ``;
-  num1 = 0;
-  num2 = 0;
+function add(num1, num2) {
   flag = false;
+  let result = Number(num1) + Number(num2);
+  display.textContent = result;
+  number1 = result;
+  return result;
+}
+function sub(num1, num2) {
+  flag = false;
+  let result = Number(num1) - Number(num2);
+  display.textContent = result;
+  number1 = result;
+  return result;
+}
+function mul(num1, num2) {
+  flag = false;
+  let result = Number(num1) * Number(num2);
+  display.textContent = result;
+  number1 = result;
+  return result;
+}
+function divide(num1, num2) {
+  flag = false;
+  let result = Number(num1) / Number(num2);
+  display.textContent = result;
+  number1 = result;
+  return result;
+}
+
+// operate function
+
+function operate(num1, num2, op) {
+  if (op === `+`) {
+    add(num1, num2);
+  }
+  if (op === `-`) {
+    sub(num1, num2);
+  }
+  if (op === `*`) {
+    mul(num1, num2);
+  }
+  if (op === `%`) {
+    divide(num1, num2);
+  }
+}
+
+
+// Adding event listener to the numbers on the calculator
+numbers.forEach((number)=>{
+  number.addEventListener(`click`,function(e){
+    numberStr += this.innerText;
+    display.textContent = numberStr;
+    if(!flag){
+      number1 = numberStr;
+    }
+    else{
+      number2 = numberStr;
+    }
+  })
+})
+
+
+
+// Adding event listener to the operator btns on the calculator
+
+
+operators.forEach((operate)=>{
+  operate.addEventListener(`click`,function(e){
+    flag = true;
+    operator = operate.textContent;
+    display.textContent = operator;
+    numberStr = ``;
+  })
+})
+
+
+// Adding event listener to the equals operator
+equals.addEventListener(`click`,function(e){
+  if(operator === `+`){
+    add(number1,number2);
+  }
+  else if(operator === `-`){
+    sub(number1,number2);
+  }
+  else if(operator === `*`){
+    mul(number1,number2);
+  }
+  else if(operator === `/`){
+    divide(number1,number2);
+  }
+})
+
+// Adding the clear display functuanility
+
+clearBtn.addEventListener(`click`,function(e){
+  number1 = 0;
+  number2 = 0;
   operator = ``;
-});
+  numberStr = ``;
+  flag = false;
+  display.textContent = 0;
+})
+
+
+
+// Adding event listener to the all clear function
+
+
+// Pseudo Code for solving the problem.
+
+// 1. Create three static variables , first one store the first number. second variable stores the operator and the third one stores the second variable.
+
+// 2. When user entered the numbers key, numbers should display to the screen. and the value should be stored in the numbers variable which is first one.
+// 3. when user enters the operator key, that value should be stored in operator variable. 
+// 4. when after opertor key pressed number pressed by the user should be stored in the second variable
+// 5. when equals operator got pressed the following functions of mathematical operations should be pressed
