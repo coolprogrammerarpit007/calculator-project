@@ -19,21 +19,21 @@ let numberStr = ``;
 
 function add(num1, num2) {
   flag = false;
-  let result = Number(num1) + Number(num2);
+  let result = (Number(num1) + Number(num2)).toFixed(3);
   display.textContent = result;
   number1 = result;
   return result;
 }
 function sub(num1, num2) {
   flag = false;
-  let result = Number(num1) - Number(num2);
+  let result = (Number(num1) - Number(num2)).toFixed(3);
   display.textContent = result;
   number1 = result;
   return result;
 }
 function mul(num1, num2) {
   flag = false;
-  let result = Number(num1) * Number(num2);
+  let result = (Number(num1) * Number(num2)).toFixed(3);
   display.textContent = result;
   number1 = result;
   return result;
@@ -48,7 +48,7 @@ function divide(num1, num2) {
     numberStr = ``;
     flag = false;
   } else {
-    let result = Number(num1) / Number(num2);
+    let result = (Number(num1) / Number(num2)).toFixed(3);
     display.textContent = result;
     number1 = result;
     return result;
